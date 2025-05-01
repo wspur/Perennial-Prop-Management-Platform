@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+
+export function Tabs({
+  children,
+  defaultValue,
+  className = "",
+}: {
+  children: React.ReactNode;
+  defaultValue: string;
+  className?: string;
+}) {
+  const [activeTab, setActiveTab] = useState(defaultValue);
+
+  return <div className={className}>{React.Children.map(children, (child: any) => React.cloneElement(child, { activeTab, setActiveTab }))}</div>;
+}
+
+export function TabsList({ children }: { children: React.ReactNode }) {
+  return <div className="flex space-x-2">{children}</div>;
+}
+
+export function TabsTrigger({ value, activeTab, setActiveTab, children }: any) {
+  return (
+    <button
+      onClick={() => setActiveTab(value)}
+      className={`px-4 py-2 text-sm font-medium rounded ${
+        activeTab === value ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function TabsContent({ value, activeTab, children }: any) {
+  return activeTab === value ? <div className="mt-4">{children}</div> : null;
+}
