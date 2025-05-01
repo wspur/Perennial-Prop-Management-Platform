@@ -1,0 +1,41 @@
+import { useEffect, useState } from "react";
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="bg-white shadow rounded-2xl p-4">
+      <h3 className="text-sm font-medium text-gray-500">{label}</h3>
+      <p className="text-lg font-semibold text-gray-900">{value}</p>
+    </div>
+  );
+}
+
+function HomeOverview() {
+  const [stats, setStats] = useState({
+    rentCollected: 0,
+    latePayments: 0,
+    operatingExpenses: 0,
+    maintenanceRequests: "Loading...",
+    unitsVacant: 0,
+    feedbackEarned: 0,
+  });
+
+  useEffect(() => {
+    async function fetchStats() {
+      const response = await fetch("/api/stats"); // Assume API endpoint
+      const data = await response.json();
+      setStats(data);
+    }
+    fetchStats();
+  }, []);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <Stat label="Rent Collected" value={`$${stats.rentCollected}`} />
+      <Stat label="Late Payments" value={`$${stats.latePayments}`} />
+      <Stat label="Operating Expenses" value={`$${stats.operatingExpenses}`} />
+      <Stat label="Maintenance Requests" value={stats.maintenanceRequests} />
+      <Stat label="Units Vacant" value={stats.unitsVacant.toString()} />
+      <Stat label="Feedback Earned" value={`$${stats.feedbackEarned}`} />
+    </div>
+  );
+}
