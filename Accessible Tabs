@@ -1,0 +1,34 @@
+import { Spinner } from "@/components/ui/spinner";
+
+function MaintenanceCenter() {
+  const [loading, setLoading] = React.useState(false);
+
+  const fetchMaintenanceRequests = async () => {
+    setLoading(true);
+    // Simulated API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setLoading(false);
+  };
+
+  React.useEffect(() => {
+    fetchMaintenanceRequests();
+  }, []);
+
+  return (
+    <Card>
+      <CardContent className="space-y-4 p-4">
+        {loading ? (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
+        ) : (
+          <>
+            <h2 className="text-xl font-semibold">Maintenance & Repairs</h2>
+            <p className="text-sm">Auto-generate tickets & get bids via API integrations.</p>
+            <Button>View Active Requests</Button>
+          </>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
