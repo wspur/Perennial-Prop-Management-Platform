@@ -1,0 +1,155 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { ChatBot } from "@/components/ai/chatbot";
+
+export default function Dashboard() {
+  return (
+    <div className="p-6 space-y-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">Property Management Dashboard</h1>
+        <ChatBot className="ml-auto" />
+      </div>
+
+      <Tabs defaultValue="home" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="home">Home</TabsTrigger>
+          <TabsTrigger value="accounting">Accounting</TabsTrigger>
+          <TabsTrigger value="communications">Communications</TabsTrigger>
+          <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
+          <TabsTrigger value="leasing">Leasing</TabsTrigger>
+          <TabsTrigger value="iot">Smart Access</TabsTrigger>
+          <TabsTrigger value="feedback">Feedback</TabsTrigger>
+        </TabsList>
+
+        {/* HOME OVERVIEW */}
+        <TabsContent value="home">
+          <Card>
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+              <Stat label="Rent Collected" value="$8,900" />
+              <Stat label="Late Payments" value="$300" />
+              <Stat label="Operating Expenses" value="$1,750" />
+              <Stat label="Maintenance Requests" value="3 Open" />
+              <Stat label="Units Vacant" value="2" />
+              <Stat label="Feedback Earned" value="$20" />
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* ACCOUNTING */}
+        <TabsContent value="accounting">
+          <AccountingDashboard />
+        </TabsContent>
+
+        {/* COMMUNICATIONS */}
+        <TabsContent value="communications">
+          <CommunicationHub />
+        </TabsContent>
+
+        {/* MAINTENANCE */}
+        <TabsContent value="maintenance">
+          <MaintenanceCenter />
+        </TabsContent>
+
+        {/* LEASING */}
+        <TabsContent value="leasing">
+          <LeasingManager />
+        </TabsContent>
+
+        {/* SMART ACCESS */}
+        <TabsContent value="iot">
+          <SmartAccessDashboard />
+        </TabsContent>
+
+        {/* FEEDBACK */}
+        <TabsContent value="feedback">
+          <Card>
+            <CardContent className="space-y-4 p-4">
+              <h2 className="text-xl font-semibold">Give Feedback & Earn</h2>
+              <p className="text-sm text-muted-foreground">
+                Help improve the platform by answering a few short questions and earn cash.
+              </p>
+              <Textarea placeholder="What can we improve?" className="w-full" />
+              <Button>Submit Feedback</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="bg-white shadow rounded-2xl p-4">
+      <h3 className="text-sm font-medium text-gray-500">{label}</h3>
+      <p className="text-lg font-semibold text-gray-900">{value}</p>
+    </div>
+  );
+}
+
+function AccountingDashboard() {
+  return (
+    <Card>
+      <CardContent className="space-y-4 p-4">
+        <h2 className="text-xl font-semibold">Accounting & Financials</h2>
+        <p className="text-sm">Integrates with QuickBooks, Stessa, Hemlane via API.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Input placeholder="Connect to financial account..." />
+          <Input placeholder="Upload CSV or connect API" />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function CommunicationHub() {
+  return (
+    <Card>
+      <CardContent className="space-y-4 p-4">
+        <h2 className="text-xl font-semibold">Tenant Communications</h2>
+        <p className="text-sm">Unified inbox for texts, calls, emails, images & docs.</p>
+        <Textarea placeholder="Search or compose new message..." />
+      </CardContent>
+    </Card>
+  );
+}
+
+function MaintenanceCenter() {
+  return (
+    <Card>
+      <CardContent className="space-y-4 p-4">
+        <h2 className="text-xl font-semibold">Maintenance & Repairs</h2>
+        <p className="text-sm">Auto-generate tickets & get bids via API integrations.</p>
+        <Button>View Active Requests</Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+function LeasingManager() {
+  return (
+    <Card>
+      <CardContent className="space-y-4 p-4">
+        <h2 className="text-xl font-semibold">Listings & Applications</h2>
+        <p className="text-sm">Integrates with Zillow, Apartments.com, TenantTurner.</p>
+        <Button>Add New Listing</Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+function SmartAccessDashboard() {
+  return (
+    <Card>
+      <CardContent className="space-y-4 p-4">
+        <h2 className="text-xl font-semibold">Smart Access & Devices</h2>
+        <p className="text-sm">Monitor and control access via smart locks & APIs.</p>
+        <Button>View Device Integrations</Button>
+      </CardContent>
+    </Card>
+  );
+}
