@@ -1,0 +1,17 @@
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+
+function TooltipButton({ label, tooltip }: { label: string; tooltip: string }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button>{label}</Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{tooltip}</p>
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+// Example Usage
+<TooltipButton label="Add New Listing" tooltip="Create a new property listing to attract tenants." />;
