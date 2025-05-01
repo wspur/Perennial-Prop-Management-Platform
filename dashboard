@@ -5,6 +5,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ChatBot } from "@/components/ai/chatbot";
+import { CalendarScheduler } from "@/components/calendar-scheduler";
+import { PaymentProcessing } from "@/components/payment-processing";
 
 export default function Dashboard() {
   return (
@@ -23,6 +25,8 @@ export default function Dashboard() {
           <TabsTrigger value="leasing">Leasing</TabsTrigger>
           <TabsTrigger value="iot">Smart Access</TabsTrigger>
           <TabsTrigger value="feedback">Feedback</TabsTrigger>
+          <TabsTrigger value="calendar">Calendar</TabsTrigger>
+          <TabsTrigger value="payments">Payments</TabsTrigger>
         </TabsList>
 
         {/* HOME OVERVIEW */}
@@ -58,6 +62,15 @@ export default function Dashboard() {
         <TabsContent value="leasing">
           <LeasingManager />
         </TabsContent>
+
+       {/* CALENDAR SCHEDULING */}
+        <TabsContent value="calendar">
+          <CalendarScheduler />
+        </TabsContent>
+
+        {/* PAYMENT PROCESSING */}
+        <TabsContent value="payments">
+          <PaymentProcessing />
 
         {/* SMART ACCESS */}
         <TabsContent value="iot">
