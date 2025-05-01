@@ -1,0 +1,23 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+export function PaymentProcessing() {
+  const handlePayment = () => {
+    alert("Processing payment...");
+    // Add Stripe or PayPal integration here
+  };
+
+  return (
+    <div className="bg-white shadow rounded-2xl p-4">
+      <h2 className="text-xl font-semibold">Payment Processing</h2>
+      <p className="text-sm text-muted-foreground">
+        Pay your rent or other charges securely through our platform.
+      </p>
+      <div className="space-y-4">
+        <Input placeholder="Enter amount" type="number" />
+        <Button onClick={handlePayment}>Make Payment</Button>
+      </div>
+    </div>
+  );
+}
