@@ -1,0 +1,34 @@
+import React from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+
+export function CalendarScheduler() {
+  const handleEventClick = (info: any) => {
+    alert(`Event: ${info.event.title}`);
+  };
+
+  const handleDateSelect = (info: any) => {
+    const title = prompt("Enter event title:");
+    if (title) {
+      alert(`Event "${title}" created on ${info.dateStr}`);
+    }
+  };
+
+  return (
+    <div className="bg-white shadow rounded-2xl p-4">
+      <h2 className="text-xl font-semibold">Calendar Scheduler</h2>
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        selectable
+        events={[
+          { title: "Maintenance Visit", date: "2025-05-05" },
+          { title: "Rent Due", date: "2025-05-10" },
+        ]}
+        eventClick={handleEventClick}
+        dateClick={handleDateSelect}
+      />
+    </div>
+  );
+}
